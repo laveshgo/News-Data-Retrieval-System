@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.lavesh</groupId>
+    <artifactId>news-data-retrival-system</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>news-data-retrival-system</name>
+    <description>news-data-retrival-system</description>
+
+    <modules>
+        <module>common-core</module>
+        <module>common-service</module>
+        <module>serving-layer</module>
+        <module>rest</module>
+    </modules>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <properties>
+        <project.build.version>1.0.0</project.build.version>
+        <java.version>17</java.version>
+        <spring-security-config.version>6.0.0</spring-security-config.version>
+        <spring-security-core.version>6.0.0</spring-security-core.version>
+        <spring-security-web.version>6.0.0</spring-security-web.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
