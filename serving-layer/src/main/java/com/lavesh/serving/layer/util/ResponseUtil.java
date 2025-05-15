@@ -1,13 +1,16 @@
 package com.lavesh.serving.layer.util;
 
+import com.google.gson.reflect.TypeToken;
 import com.lavesh.common.core.constant.AppConstant;
 import com.lavesh.common.core.exception.BaseException;
+import com.lavesh.common.core.model.SuccessCode;
 import com.lavesh.common.core.util.AppUtil;
 import com.lavesh.serving.layer.dto.BaseResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,6 +70,22 @@ public class ResponseUtil {
         baseResponseDto.setStatusCode(HttpStatus.OK);
         baseResponseDto.setStatusSubCode(HttpStatus.OK.name());
         baseResponseDto.setMessage(AppConstant.SUCCESSFULLY_PROCESSED);
+        baseResponseDto.setResponse(successMessageMap);
+        return new ResponseEntity<>(baseResponseDto, HttpStatus.OK);
+    }
+
+    public static ResponseEntity<BaseResponseDto<Object>> buildSuccessResponse(SuccessCode successCode) {
+        Map<String, String> successMessageMap = new HashMap<>();
+        successMessageMap.put("message", successCode.getMessage());
+
+        BaseResponseDto<Object> baseResponseDto = new BaseResponseDto<>();
+        baseResponseDto.setTimestamp(AppUtil.getStartTimeStampFromMDC());
+        baseResponseDto.setRequestId(AppUtil.getTransactionIdFromMdc());
+        baseResponseDto.setHostName(AppUtil.getHostName());
+        baseResponseDto.setStatus(successCode.getSuccessCodeEnum().getHttpStatus().value());
+        baseResponseDto.setStatusCode(successCode.getSuccessCodeEnum().getHttpStatus());
+        baseResponseDto.setStatusSubCode(successCode.getSuccessCodeEnum().name());
+        baseResponseDto.setMessage(successCode.getMessage());
         baseResponseDto.setResponse(successMessageMap);
         return new ResponseEntity<>(baseResponseDto, HttpStatus.OK);
     }
