@@ -12,8 +12,8 @@ public enum ErrorCodeEnum {
     NOT_SUPPORTED(HttpStatus.NOT_FOUND),
     UNPROCESSABLE_ENTITY(HttpStatus.UNPROCESSABLE_ENTITY),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR),
-    DATA_INTEGRITY_VIOLATED(HttpStatus.UNPROCESSABLE_ENTITY);
-
+    DATA_INTEGRITY_VIOLATED(HttpStatus.UNPROCESSABLE_ENTITY),
+    NO_SUCH_LLM_CLIENT_EXCEPTION(HttpStatus.UNPROCESSABLE_ENTITY);
     private final HttpStatus httpStatus;
 
     ErrorCodeEnum(final HttpStatus httpStatus) {

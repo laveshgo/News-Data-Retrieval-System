@@ -14,8 +14,6 @@ public class AppConstant {
     public static final String REQUEST_LOG_ID = "requestLogId";
     public static final String REQUEST_START_TIMESTAMP = "requestStartTimeStamp";
     public static final String REQUEST_END_TIMESTAMP = "requestEndTimeStamp";
-    public static final String USER_ID_HEADER = "X-USER-ID";
-    public static final String PROFILE_ID_HEADER = "X-PROFILE-ID";
     public static final String REQUEST_CUSTOMER_ID_INIT_VALUE = "N/A";
     public static final String SUCCESSFULLY_PROCESSED = "Successfully Processed!!";
     public static final String VALIDATION_FAILED = "Validation Failed!!";
@@ -30,4 +28,6 @@ public class AppConstant {
     public static final String NO_ARTICLE_FROM_NEARBY_LOCATION = "No articles from nearby locations";
     public static final String NO_SUCH_ARTICLE = "No such article";
     public static final Integer STRING_MAX_LENGTH = 40;
+    public static final String NO_SUCH_LLM_CLIENT_EXCEPTION = "No such llm client exists";
+    public static final String NO_SUCH_CATEGORY = "No such category";
 }

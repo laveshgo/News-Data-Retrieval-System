@@ -2,7 +2,9 @@ package com.lavesh.common.service.impl;
 
 import com.lavesh.common.core.bo.ArticleBo;
 import com.lavesh.common.core.entity.ArticleEntity;
+import com.lavesh.common.core.enums.CategoryEnum;
 import com.lavesh.common.core.mapper.ArticleBoEntityMapper;
+import com.lavesh.common.core.model.IntentEntities;
 import com.lavesh.common.core.repo.ArticleRepo;
 import com.lavesh.common.core.repo.DynamicQueryRepo;
 import com.lavesh.common.service.ArticleService;
@@ -48,9 +50,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleBo> findArticleListByCategory(String categoryName, Integer pageNumber, Integer pageSize) {
+    public List<ArticleBo> findArticleListByCategory(CategoryEnum categoryEnum, Integer pageNumber, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("publication_date").descending());
-        Page<ArticleEntity> articleEntityPage = articleRepo.findArticleListByCategory(categoryName, pageable);
+        Page<ArticleEntity> articleEntityPage = articleRepo.findArticleListByCategory(categoryEnum, pageable);
         return ArticleBoEntityMapper.INSTANCE.entityToBoList(articleEntityPage.getContent());
     }
 
@@ -80,5 +82,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ArticleBo> findArticleByFilter(String searchText, Integer pageNumber, Integer pageSize) {
         return ArticleBoEntityMapper.INSTANCE.entityToBoList(dynamicQueryRepo.findArticleByFilter(searchText, pageNumber, pageSize));
+    }
+
+    @Override
+    public List<ArticleBo> findArticleByFilter(IntentEntities intentEntities, Integer pageNumber, Integer pageSize) {
+        return ArticleBoEntityMapper.INSTANCE.entityToBoList(dynamicQueryRepo.findArticlesByIntents(
+                intentEntities.getNearby(), intentEntities.getSource(), intentEntities.getCategory(), intentEntities.getGeneral(), pageNumber, pageSize));
     }
 }

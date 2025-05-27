@@ -1,6 +1,7 @@
 package com.lavesh.serving.layer.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.lavesh.common.core.enums.CategoryEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +19,7 @@ public class ArticleOutputDto {
     private String description;
     private Date publication_date;
     private String source_name;
-    private List<String> category;
+    private List<CategoryEnum> categoryList;
     private Double relevance_score;
     private String summary;
 }

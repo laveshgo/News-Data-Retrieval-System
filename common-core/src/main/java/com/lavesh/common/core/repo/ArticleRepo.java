@@ -1,6 +1,7 @@
 package com.lavesh.common.core.repo;
 
 import com.lavesh.common.core.entity.ArticleEntity;
+import com.lavesh.common.core.enums.CategoryEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Distance;
@@ -16,8 +17,8 @@ public interface ArticleRepo extends MongoRepository<ArticleEntity, String> {
     @Query("{'id': ?0}")
     ArticleEntity findArticleById(final String id);
 
-    @Query("{'category': ?0, 'status' : 1}")
-    Page<ArticleEntity> findArticleListByCategory(String categoryName, Pageable pageable);
+    @Query("{'categoryList': ?0, 'status' : 1}")
+    Page<ArticleEntity> findArticleListByCategory(CategoryEnum categoryEnum, Pageable pageable);
 
     @Query("{'relevance_score': { $gt: ?0 }, 'status': 1 }")
     Page<ArticleEntity> findArticleByRelevanceThreshold(Double threshold, Pageable pageable);

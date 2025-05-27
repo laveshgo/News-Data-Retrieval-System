@@ -2,6 +2,7 @@ package com.lavesh.common.core.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.lavesh.common.core.enums.CategoryEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,9 +45,9 @@ public class Article extends MongoBase {
     @Column(name = "source_name")
     private String source_name;
 
-    @Field(name = "category")
-    @Column(name = "category")
-    private List<String> category;
+    @Field(name = "categoryList")
+    @Column(name = "categoryList")
+    private List<CategoryEnum> categoryList;
 
     @Field(name = "relevance_score")
     @Column(name = "relevance_score")

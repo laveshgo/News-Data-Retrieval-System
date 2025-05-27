@@ -16,6 +16,12 @@
             <artifactId>common-service</artifactId>
             <version>${project.build.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.lavesh</groupId>
+            <artifactId>google-cloud-service</artifactId>
+            <version>${project.build.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

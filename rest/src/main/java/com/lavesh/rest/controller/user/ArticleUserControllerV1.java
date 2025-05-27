@@ -70,12 +70,23 @@ public class ArticleUserControllerV1 {
 
     @GetMapping(value = "/filter", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<BaseResponseDto<Object>> findArticleByFilter(
-            @Parameter(name = "searchText", description = "Search test", required = true)
+            @Parameter(name = "searchText", description = "Search text", required = true)
             @RequestParam(value = "searchText", required = true) final String searchText,
             @Parameter(name = "pageNumber", description = "page Number", required = true, example = "0")
             @RequestParam(value = "pageNumber", required = true) final Integer pageNumber,
             @Parameter(name = "pageSize", description = "page Size", required = true, example = "5")
             @RequestParam(value = "pageSize", required = true) final Integer pageSize) throws BaseException {
         return articleComponent.findArticleByFilter(searchText, pageNumber, pageSize);
+    }
+
+    @GetMapping(value = "/entity", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<BaseResponseDto<Object>> fetchEntityFromQuery(
+            @Parameter(name = "query", description = "query", required = true)
+            @RequestParam(value = "query", required = true) final String query,
+            @Parameter(name = "pageNumber", description = "page Number", required = true, example = "0")
+            @RequestParam(value = "pageNumber", required = true) final Integer pageNumber,
+            @Parameter(name = "pageSize", description = "page Size", required = true, example = "5")
+            @RequestParam(value = "pageSize", required = true) final Integer pageSize) throws BaseException {
+        return articleComponent.fetchEntityFromQuery(query, pageNumber, pageSize);
     }
 }
