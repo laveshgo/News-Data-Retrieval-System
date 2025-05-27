@@ -21,9 +21,6 @@ public class MdcUtil {
         MDC.put(AppConstant.REQUEST_CUSTOMER_ID, customerId);
     }
 
-    public static String getCustomerIdFromMDC() {
-        return MDC.get(AppConstant.REQUEST_CUSTOMER_ID);
-    }
 
     public static void addHostNameToMDC(final String hostName) {
         MDC.put(AppConstant.REQUEST_HOST_NAME, hostName);
@@ -67,36 +64,6 @@ public class MdcUtil {
         return Timestamp.valueOf(timeStamp);
     }
 
-    public static void addUserIdHeaderToMDC(final String userId) {
-        if (ObjectUtils.isEmpty(userId)) {
-            return;
-        }
-        MDC.put(AppConstant.USER_ID_HEADER, userId);
-    }
-
-    public static void addProfileIdHeaderToMDC(final String profileid) {
-        if (ObjectUtils.isEmpty(profileid)) {
-            return;
-        }
-        MDC.put(AppConstant.PROFILE_ID_HEADER, profileid);
-    }
-
-    public static String getUserIdHeaderFromMDC() {
-        String userId = MDC.get(AppConstant.USER_ID_HEADER);
-        if (ObjectUtils.isEmpty(userId)) {
-            return null;
-        }
-        return userId;
-    }
-
-    public static String getProfileIdHeaderFromMDC() {
-        String profileId = MDC.get(AppConstant.PROFILE_ID_HEADER);
-        if (ObjectUtils.isEmpty(profileId)) {
-            return null;
-        }
-        return profileId;
-    }
-
     public static void flushMDC() {
         MDC.remove(AppConstant.REQUEST_CUSTOMER_ID);
         MDC.remove(AppConstant.REQUEST_LOG_ID);
@@ -104,8 +71,6 @@ public class MdcUtil {
         MDC.remove(AppConstant.REQUEST_METHOD_NAME);
         MDC.remove(AppConstant.REQUEST_START_TIMESTAMP);
         MDC.remove(AppConstant.REQUEST_END_TIMESTAMP);
-        MDC.remove(AppConstant.USER_ID_HEADER);
-        MDC.remove(AppConstant.PROFILE_ID_HEADER);
 
     }
 }

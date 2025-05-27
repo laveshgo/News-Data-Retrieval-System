@@ -1,17 +1,15 @@
 package com.lavesh.common.core.util;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.lavesh.common.core.constant.AppConstant;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
-import jakarta.servlet.http.HttpServletRequest;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Type;
 import java.net.InetAddress;
@@ -24,9 +22,9 @@ import java.util.UUID;
 @Slf4j
 public class AppUtil {
 
-    private final static ObjectMapper objectMapper = new ObjectMapper();
     private static final Gson gson = new GsonBuilder()
             .create();
+    private static String hostName;
 
     public static String getUniqueId() {
         return UUID.randomUUID().toString();
@@ -52,8 +50,16 @@ public class AppUtil {
         return gson.fromJson(value, type);
     }
 
-    public static void copyNonNullProperties(Object source, Object destination) {
-        BeanUtils.copyProperties(source, destination, getNullPropertyNames(source));
+    public static boolean checkStringLength(String... values) {
+        for (String value : values) {
+            if (StringUtils.isEmpty(value)) {
+                return false;
+            }
+            if (value.length() > AppConstant.STRING_MAX_LENGTH) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static String[] getNullPropertyNames(Object source) {
@@ -69,7 +75,6 @@ public class AppUtil {
         return emptyNames.toArray(result);
     }
 
-
     public static String getTransactionIdFromMdc() {
         return MdcUtil.getTransactionIdFromMdc();
     }
@@ -82,11 +87,6 @@ public class AppUtil {
         return requestId;
     }
 
-    public static void addTransactionIdToMdc(final HttpServletRequest httpServletRequest) {
-        String requestId = getTransactionIdFromRequestOrGenerateNewTransactionId(httpServletRequest);
-        MdcUtil.addTransactionIdToMdc(requestId);
-    }
-    private static String hostName;
     public static String getHostName() {
         if (ObjectUtils.isNotEmpty(hostName)) {
             return hostName;

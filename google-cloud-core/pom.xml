@@ -8,19 +8,31 @@
         <artifactId>news-data-retrival-system</artifactId>
         <version>1.0.0</version>
     </parent>
+    <packaging>jar</packaging>
 
-    <artifactId>serving-layer</artifactId>
+    <artifactId>google-cloud-core</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.lavesh</groupId>
-            <artifactId>common-service</artifactId>
-            <version>${project.build.version}</version>
+            <artifactId>common-core</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>
-            <groupId>com.lavesh</groupId>
-            <artifactId>google-cloud-service</artifactId>
-            <version>${project.build.version}</version>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-language</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.maps</groupId>
+            <artifactId>google-maps-services</artifactId>
+            <version>0.18.0</version>
         </dependency>
     </dependencies>
 

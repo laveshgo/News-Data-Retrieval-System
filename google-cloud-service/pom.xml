@@ -8,20 +8,30 @@
         <artifactId>news-data-retrival-system</artifactId>
         <version>1.0.0</version>
     </parent>
+    <packaging>jar</packaging>
 
-    <artifactId>serving-layer</artifactId>
+    <artifactId>google-cloud-service</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>com.lavesh</groupId>
+            <artifactId>google-cloud-core</artifactId>
+            <version>${project.build.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.lavesh</groupId>
             <artifactId>common-service</artifactId>
             <version>${project.build.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.lavesh</groupId>
-            <artifactId>google-cloud-service</artifactId>
-            <version>${project.build.version}</version>
-        </dependency>
+
     </dependencies>
 
     <build>
